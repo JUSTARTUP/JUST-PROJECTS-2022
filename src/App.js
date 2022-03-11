@@ -96,6 +96,16 @@ const App = () => {
 	const initialRef = useRef();
 	const mainRef = useRef();
 	const textRef = useRef();
+	// const [locationX, setLocationX] = useState(0);
+	// const [isTouchDevice, setIsTouchDevice] = useState(0);
+
+	// useEffect(() => {
+	// 	setLocationX(window.pageXOffset);
+	// 	setIsTouchDevice(
+	// 		navigator.maxTouchPoints || "ontouchstart" in document.documentElement
+	// 	);
+	// 	console.log(locationX);
+	// });
 
 	const initialClickController = () => {
 		initialRef.current.style.transform = "translateX(-100vw)";
