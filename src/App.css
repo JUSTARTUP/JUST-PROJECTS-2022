@@ -235,6 +235,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: #080808;
 }
 
 .homeLink {
@@ -247,4 +248,83 @@ body {
 
 .homeLink:hover {
 	transform: scale(1.1);
+}
+
+.MobileApp {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	height: 100vh;
+	background-color: #080808;
+	color: #fff;
+	width: auto;
+	min-height: 100vw;
+	overflow: scroll;
+	white-space: nowrap;
+}
+
+.mobileInitialPage {
+	width: 100vw;
+	height: 50vh;
+	margin: auto 10vw;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	transition: 2s;
+}
+
+.mobileMainPage {
+	width: auto;
+	height: 100vh;
+	margin: auto 20vw;
+	padding-left: 4vw;
+	display: flex;
+	flex-direction: row;
+	transition: 1s;
+	background-color: #080808;
+}
+
+.mobileHomeLink {
+	text-decoration: none;
+	font-size: 28px;
+	color: white;
+	font-weight: 200;
+	transition: 0.3s;
+	margin-right: 5vw;
+}
+.mobilemainImage {
+	object-fit: scale-down;
+	width: 80vw;
+	margin-left: 10%;
+}
+#mobilerowCircle .mobilemainImage {
+	width: 40vw;
+}
+
+.mobileProject {
+	margin: auto 40vw;
+	/* width: 60vw; */
+}
+
+.mobileprojectTitle {
+	color: #feaa00;
+	font-size: 2rem;
+	margin-bottom: 12px;
+	margin-top: 32px;
+}
+.mobileprojectContainerWrapper {
+	display: flex;
+	flex-direction: row;
+	width: 80vw;
+	margin: 0vw;
+}
+.mobileprojectDetail {
+	word-break: break-all;
+	font-size: 16px;
+	font-weight: 300;
+	margin-bottom: 8px;
+}
+.mobileprojectMaker {
+	font-size: 18px;
+	font-weight: 600;
 }
