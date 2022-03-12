@@ -96,16 +96,15 @@ const App = () => {
 	const initialRef = useRef();
 	const mainRef = useRef();
 	const textRef = useRef();
-	// const [locationX, setLocationX] = useState(0);
-	// const [isTouchDevice, setIsTouchDevice] = useState(0);
+	const [locationX, setLocationX] = useState(0);
+	const [isTouchDevice, setIsTouchDevice] = useState(0);
 
-	// useEffect(() => {
-	// 	setLocationX(window.pageXOffset);
-	// 	setIsTouchDevice(
-	// 		navigator.maxTouchPoints || "ontouchstart" in document.documentElement
-	// 	);
-	// 	console.log(locationX);
-	// });
+	useEffect(() => {
+		setLocationX(window.pageXOffset);
+		setIsTouchDevice(
+			navigator.maxTouchPoints || "ontouchstart" in document.documentElement
+		);
+	});
 
 	const initialClickController = () => {
 		initialRef.current.style.transform = "translateX(-100vw)";
@@ -114,59 +113,110 @@ const App = () => {
 	};
 
 	return (
-		<div className="App">
-			<Cursor />
-			<HorizontalScroll
-				reverseScroll={true}
-				pageLock={true}
-				config={{ stiffness: 100, damping: 16 }}
-			>
-				<div className="initialPage" ref={initialRef}>
-					<div className="titleContainer">
-						<div className="initialTitle">PROJECTS</div>
-						<div className="initialDiscription">
-							JUST 멤버들이 진행한 프로젝트를 확인하세요.
-						</div>
-					</div>
-					<div className="btnContainer" onClick={initialClickController}>
-						<img className="circularBtnIcon" src={arrowIcon}></img>
-					</div>
-				</div>
-				<div className="mainPage" ref={mainRef}>
-					{projects.map((project, index) => {
-						// console.log(project.type);
-						return (
-							<div id={project.type} className="project">
-								<img
-									className="mainImage"
-									key={index}
-									src={project.src}
-									alt="image"
-								/>
-								<div className="projectContainerWrapper">
-									<div className="projectTextContainer">
-										<div className="projectTitle">{project.title}</div>
-										<div className="projectDetail">{project.detail}</div>
-										<div className="projectMaker">{project.maker}</div>
-									</div>
-									<div
-										className="projectBtnContainer"
-										onClick={() => window.open(project.link, "_blank")}
-									>
-										<img className="circularBtnIcon" src={arrowIcon}></img>
-									</div>
+		<>
+			{!isTouchDevice && (
+				<div className="App">
+					<Cursor />
+
+					<HorizontalScroll
+						reverseScroll={true}
+						pageLock={true}
+						config={{ stiffness: 100, damping: 16 }}
+					>
+						<div className="initialPage" ref={initialRef}>
+							<div className="titleContainer">
+								<div className="initialTitle">PROJECTS</div>
+								<div className="initialDiscription">
+									JUST 멤버들이 진행한 프로젝트를 확인하세요.
 								</div>
 							</div>
-						);
-					})}
+							<div className="btnContainer" onClick={initialClickController}>
+								<img className="circularBtnIcon" src={arrowIcon}></img>
+							</div>
+						</div>
+						<div className="mainPage" ref={mainRef}>
+							{projects.map((project, index) => {
+								// console.log(project.type);
+								return (
+									<div id={project.type} className="project">
+										<img
+											className="mainImage"
+											key={index}
+											src={project.src}
+											alt="image"
+										/>
+										<div className="projectContainerWrapper">
+											<div className="projectTextContainer">
+												<div className="projectTitle">{project.title}</div>
+												<div className="projectDetail">{project.detail}</div>
+												<div className="projectMaker">{project.maker}</div>
+											</div>
+											<div
+												className="projectBtnContainer"
+												onClick={() => window.open(project.link, "_blank")}
+											>
+												<img className="circularBtnIcon" src={arrowIcon}></img>
+											</div>
+										</div>
+									</div>
+								);
+							})}
+						</div>
+						<div className="endingPage" ref={textRef}>
+							<a className="homeLink" href="https://justartup.today/">
+								GO BACK TO{" "}
+								<strong style={{ color: "#feaa00" }}>JUST/HOME</strong>
+							</a>
+						</div>
+					</HorizontalScroll>
 				</div>
-				<div className="endingPage" ref={textRef}>
-					<a className="homeLink" href="https://justartup.today/">
-						GO BACK TO <strong style={{ color: "#feaa00" }}>JUST/HOME</strong>
-					</a>
+			)}
+			{isTouchDevice && (
+				<div className="MobileApp">
+					{/* <Cursor /> */}
+					<div className="mobileInitialPage" ref={initialRef}>
+						<div className="titleContainer">
+							<div className="initialTitle">PROJECTS</div>
+							<div className="initialDiscription">
+								JUST 멤버들이 진행한 프로젝트를 확인하세요.
+							</div>
+						</div>
+						<div className="btnContainer" onClick={initialClickController}>
+							<img className="circularBtnIcon" src={arrowIcon}></img>
+						</div>
+					</div>
+					<div className="mobileMainPage" ref={mainRef}>
+						{projects.map((project, index) => {
+							// console.log(project.type);
+							return (
+								<div id={"mobile" + project.type} className="mobileProject">
+									<img
+										className="mobilemainImage"
+										key={index}
+										src={project.src}
+										alt="image"
+									/>
+									<div className="mobileprojectContainerWrapper">
+										<div className="projectTextContainer">
+											<div className="mobileprojectTitle">{project.title}</div>
+											<div className="mobileprojectDetail">
+												{project.detail}
+											</div>
+											<div className="mobileprojectMaker">{project.maker}</div>
+										</div>
+									</div>
+								</div>
+							);
+						})}
+					</div>
+					<div className="endingPage" ref={textRef}>
+						<a className="mobileHomeLink" href="https://justartup.today/">
+							GO BACK TO <strong style={{ color: "#feaa00" }}>JUST/HOME</strong>
+						</a>
+					</div>
 				</div>
-			</HorizontalScroll>
-		</div>
+			)}
+		</>
 	);
 };
 
